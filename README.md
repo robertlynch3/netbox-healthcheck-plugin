@@ -36,7 +36,7 @@ git+https://github.com/netbox-community/netbox_healthcheck_plugin
 ```
 
 Enable the plugin in `/opt/netbox/netbox/netbox/configuration.py`,
- or if you use netbox-docker, your `/configuration/plugins.py` file :
+ or if you use netbox-docker, your `/configuration/plugins.py` file:
 
 ```python
 PLUGINS = [
@@ -44,8 +44,11 @@ PLUGINS = [
 ]
 
 PLUGINS_CONFIG = {
-    "netbox_healthcheck_plugin": {},
-}
+    "netbox_healthcheck_plugin": {
+        "navigation": True
+    },
+}*
+**Note**: `"navigation":False` will remove the link on the navigation bar.
 ```
 Then you will need to run the `migrate` function:
 ```

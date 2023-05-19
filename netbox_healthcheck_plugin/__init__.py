@@ -13,7 +13,7 @@ class HealthCheckConfig(PluginConfig):
     verbose_name = 'NetBox HealthCheck Plugin'
     description = 'NetBox plugin for HealthCheck.'
     version = 'version'
-    base_url = 'netbox_healthcheck_plugin'
+    base_url = 'healthcheck'
     django_apps = [
         'health_check',
         'health_check.db',
