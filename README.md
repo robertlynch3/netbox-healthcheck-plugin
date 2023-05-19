@@ -2,7 +2,7 @@
 
 NetBox provides health check monitors that can be queried to make sure that the service is running in good condition.  
 
-NetBox exposes metrics at the `/healthcheck` HTTP endpoint, e.g. `https://netbox.local/healthcheck`. It allows monitor conditions via HTTP(S), with responses available in HTML and JSON formats.
+NetBox exposes metrics at the `/healthcheck` HTTP endpoint, e.g. `https://netbox.local/plugins/netbox_healthcheck_plugin/healthcheck`. It allows monitor conditions via HTTP(S), with responses available in HTML and JSON formats.
 
 * Free software: Apache-2.0
 * Documentation: https://netbox-community.github.io/netbox-healthcheck-plugin/.
@@ -26,13 +26,13 @@ For adding to a NetBox Docker setup see
 While this is still in development and not yet on pypi you can install with pip:
 
 ```bash
-pip install git+https://github.com/arthanson/netbox_healthcheck_plugin
+pip install git+https://github.com/netbox-community/netbox_healthcheck_plugin
 ```
 
 or by adding to your `local_requirements.txt` or `plugin_requirements.txt` (netbox-docker):
 
 ```bash
-git+https://github.com/arthanson/netbox_healthcheck_plugin
+git+https://github.com/netbox-community/netbox_healthcheck_plugin
 ```
 
 Enable the plugin in `/opt/netbox/netbox/netbox/configuration.py`,
@@ -40,12 +40,16 @@ Enable the plugin in `/opt/netbox/netbox/netbox/configuration.py`,
 
 ```python
 PLUGINS = [
-    'HealthCheck'
+    'netbox_healthcheck_plugin'
 ]
 
 PLUGINS_CONFIG = {
-    "HealthCheck": {},
+    "netbox_healthcheck_plugin": {},
 }
+```
+Then you will need to run the `migrate` function:
+```
+python manage.py migrate
 ```
 
 ## Setting up Monitoring
